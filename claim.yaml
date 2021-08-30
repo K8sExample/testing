@@ -1,0 +1,17 @@
+apiVersion: database.snyk.io/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  labels:
+    argocd.argoproj.io/instance: example
+  name: example-app-psql
+  namespace: default
+spec:
+  compositionSelector:
+    matchLabels:
+      provider: aws
+      purpose: postgres-demo
+  parameters:
+    storageGB: 20
+    version: '11'
+  writeConnectionSecretToRef:
+    name: example-app-psql-connection
